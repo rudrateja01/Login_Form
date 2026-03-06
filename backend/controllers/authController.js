@@ -6,6 +6,7 @@ import jwt from "jsonwebtoken";
 export const registerUser = async (req, res) => {
   try {
     const { fullName, phone, email, password, company, isAgency } = req.body;
+console.log(req.body);
 
    
     const userExists = await User.findOne({ email });
@@ -26,6 +27,8 @@ export const registerUser = async (req, res) => {
 
     res.status(201).json({ message: "Account Created Successfully" });
   } catch (error) {
+    console.log(error.message);
+    
     res.status(500).json({ message: "Signup Failed", error });
   }
 };
@@ -34,6 +37,8 @@ export const registerUser = async (req, res) => {
 export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
+    console.log(req.body);
+    
 
     const user = await User.findOne({ email });
     if (!user)
@@ -64,6 +69,8 @@ export const loginUser = async (req, res) => {
       },
     });
   } catch (error) {
+    console.log(error.message);
+    
     res.status(500).json({ message: "Login Failed" });
   }
 };
