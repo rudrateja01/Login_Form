@@ -15,12 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-app.use(
-  cors({
-    origin: "https://login-form-wjvu.onrender.com/",
-    credentials: true,
-  })
-);
+app.use(cors());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
