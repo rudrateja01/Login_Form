@@ -15,7 +15,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-app.use(cors());
+app.use(
+  cors({
+    origin: ["http://localhost:5173"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
+  })
+);
+
+app.options("*", cors());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
